@@ -9,9 +9,6 @@
 # readBrownie
 # writeBrownie
 
-setGeneric("writeBrownie", function(x,...) { standardGeneric("writeBrownie")} )
-
-
 readBrownie<-function(fname)
 {
 	
@@ -40,6 +37,7 @@ readBrownie<-function(fname)
 	} else {
 		
 		# should return a list of phylo4 objects with singleton nodes
+		# NOTE (2/11) - this now returns 'phylo4d_ext' objects
 		phy.part = read.nexus.simmap(fname) 
 		
 		# process data part (the hard way)
@@ -71,7 +69,7 @@ readBrownie<-function(fname)
 					stop("Could not match up tree names against data names")
 				
 				neworder=unname(sapply(tipmods,function(i) which(i == data.names)))
-				data.part.tmp = data.part[neworder,]
+				data.part.tmp = data.part[neworder,,drop=F]
 					
 # 				} else {
 # 					# This will probably never be called until NCL is updated
@@ -79,7 +77,7 @@ readBrownie<-function(fname)
 # 				}
 
 				phy.part[[tind]] = addData(phy.part[[tind]],tip.data=data.part.tmp,match.data=F)
-				phy.part[[tind]] = phyext(phy.part[[tind]])
+				phy.part[[tind]] = phyext(phy.part[[tind]])  # NOTE (2/11): this should be redundant since read.nexus.simmap now returns only 'phylo4d_ext' objects
 			}
 		}
 	}
@@ -286,6 +284,7 @@ readBrownie<-function(fname)
 	mmatrix.data = unname(apply(mmatrix.data,1,paste,collapse="\t"))
 	mmatrix.end = ";\n\nEND;"
 	
+
 	return(c(header,
 			header.title,
 			header.dims,
@@ -297,10 +296,11 @@ readBrownie<-function(fname)
 
 }
 
+setGeneric("writeBrownie", function(x,...) { standardGeneric("writeBrownie")} )
 
 setMethod("writeBrownie",signature(x="brownie"),
-	function(x,file=NULL,rmsimmap=TRUE) {
-		return( writeBrownie(list(x),file=file,rmsimmap=rmsimmap) )
+	function(x,...) {
+		return( writeBrownie(list(x),...) )
 })
 
 # write nexus file with trees and characters
@@ -308,7 +308,7 @@ setMethod("writeBrownie",signature(x="brownie"),
 #		-Better way to convert CR/LF (in Windows)
 #
 setMethod("writeBrownie", signature(x="list"),
-	function(x, file=NULL, rmsimmap=TRUE) {
+	function(x, file=NULL, rmsimmap=TRUE, usestate='simmap_state') {
 		
 		# temporary files for nexus blocks:
 		#
@@ -329,7 +329,7 @@ setMethod("writeBrownie", signature(x="list"),
 		
 		# Perpare tree
 		#phy = as(x[[1]],'phylo')
-		write.nexus.simmap(x,file=tmp1)
+		write.nexus.simmap(x,file=tmp1,vers=1.1,usestate=usestate)
 		
 		# if there is tip data to be written
 		#
@@ -337,7 +337,7 @@ setMethod("writeBrownie", signature(x="list"),
 		{
 			if(rmsimmap)
 			{
-				x[[1]] = rmdata(x[[1]],'simmap_state')
+				x[[1]] = rmdata(x[[1]],usestate)
 			}
 			
 			dtypes = datatypes(x[[1]])

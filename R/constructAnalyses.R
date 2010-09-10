@@ -172,14 +172,21 @@ runNonCensored <- function(brobj,outfile=NULL,brfile=NULL,
 	writeBrownie(brobj,brfile)
 	
 	outtext = run.analysis(brfile)
+	outdat=NULL
 	if(length(outtext$textout)>0)
 	{
+		# rm empty lines:
+		if(any(outtext$textout==""))
+			outtext$textout <- outtext$textout[-which(outtext$textout=="")]
+		
 		outdat = read.continuous.output(txt=scan.textout(outtext$textout[1]))
 		
 		if(length(outtext$textout)>1){
 			for(xx in seq(from=2,to=length(outtext$textout)))
 			{
-				outdat = merge(outdat,read.continuous.output(txt=scan.textout(outtext$textout[xx])),all=T)
+				tmpdf = read.continuous.output(txt=scan.textout(outtext$textout[xx]))
+				if( !(ncol(tmpdf)==0 || nrow(tmpdf)==0) )
+					outdat = merge(outdat,tmpdf,all=T)
 			}
 		}
 	}

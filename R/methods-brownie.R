@@ -14,6 +14,7 @@ setGeneric("datatypes", function(x) { standardGeneric("datatypes")} )
 setGeneric("datatypes<-", function(x,enforce=TRUE,value) { standardGeneric("datatypes<-")} )
 setGeneric("taxasets", function(x) { standardGeneric("taxasets")} )
 setGeneric("taxasets<-", function(x,taxnames,value) { standardGeneric("taxasets<-")} )
+setGeneric("removeTaxasets", function(x,index) { standardGeneric("removeTaxasets")} )
 setGeneric("hasTaxasets", function(x) { standardGeneric("hasTaxasets")} )
 
 
@@ -400,6 +401,37 @@ setReplaceMethod("taxasets",signature(x="list"),
 })
 
 
+setMethod("removeTaxasets", signature(x="brownie",index="character"), 
+	function(x,index) {
+		tnames = names(taxasets(x))
+		altnames = sub("^TAXSET_(.*)$","\\1",tnames)
+		if(index %in% tnames)
+		{
+			return(removeTaxasets(x,index = which(index == tnames)[1]))
+		} else {
+			if(index %in% altnames)
+			{
+				return(removeTaxasets(x,index = which(index == altnames)[1]))
+			} else{
+				stop("Could not find taxaset with name ",index)
+			}
+		}
+})
+
+
+setMethod("removeTaxasets", signature(x="brownie",index="numeric"), 
+	function(x,index) {
+	datind = taxind.to.dataind(br,index)
+	if(length(datind) != 1)
+		stop("problem converting taxa index into data index")
+	
+	br@data = br@data[,-datind,drop=F]
+	br@datatypes = br@datatypes[-datind]
+	return(br)
+})
+
+	
+
 #
 taxaname.to.taxind <- function(x,taxnames)
 {
@@ -416,9 +448,9 @@ taxind.to.dataind <- function(x,taxind)
 {
 	index = integer(0)
 	if(is.character(taxind)){
-		index = which(tdata(x,'tip')==taxind)
+		index = which(colnames(tdata(x,'tip'))==taxind)
 		if(length(index) == 0)
-			index = which(tdata(x,'tip')==taxaset.rename(taxind))
+			index = which(colnames(tdata(x,'tip'))==taxaset.rename(taxind))
 		
 		if(length(index) == 0)
 			stop("Could not find taxaset called: ",taxind,"\n These are available:",taxaset.names(x))
@@ -610,4 +642,57 @@ checkPara <- function(treeslist,taxaset,percent=T)
 	
 	return(retnum) 
 }
+
+
+## Generic Overloads from phylo4d_ext:
+
+# NOTE: These rm functions assume that datatypes is matched up with tdata(x) and sndata(x) perfectly
+setMethod("rmdata", signature(x="brownie",index="numeric",subindex="numeric"),
+  function(x,index,subindex) {
+	
+	if(length(index)>0 && abs(index) <= ncol(tdata(x)) && index != 0)
+	{
+		x@data = x@data[,-index,drop=F]
+		x@datatypes = x@datatypes[-index]
+	} else {
+		stop("The data column to be removed could not be found in tdata(x)")
+	}
+
+	if( hasSubNodes(x) && length(subindex) >0 && abs(subindex) <= ncol(sndata(x)) && subindex != 0)
+	{
+		x@subnode.data = x@subnode.data[,-index,drop=F]
+	}
+	
+	return(x)
+})
+	
+
+setMethod("rmdata", signature(x="brownie",index="numeric",subindex="missing"),
+  function(x,index) {
+	return( rmdata(x,index=index,subindex=index) )
+})
+
+setMethod("rmdata", signature(x="brownie",index="character",subindex="missing"),
+  function(x,index) {
+	ind = which(colnames(tdata(x)) %in% index)
+	if(hasSubNodes(x)){
+		subind = which(colnames(sndata(x)) %in% index)
+	} else {
+		subind = numeric(0)
+	}
+	
+	if( !all(sort(ind) == sort(subind)) )
+	{
+		warning("Problem: datatypes and (@data, @subnode.data) have become out of sync")
+	}
+
+	if( length(ind) == 0 && length(subind) == 0 )
+	{
+		warning("The data column ",index," was not found in brownie object and request to delete it is being ignored")
+		return(x)
+	} else {
+		return( rmdata(x,index=ind,subindex=subind) )
+	}
+})
+
 
