@@ -50,10 +50,10 @@ J. Conrad Stack
 \code{\link{scan.textout}}
 }
 \examples{
-\dontrun{data(parrot)}
-\dontrun{junkrun=run.asis(parrot)}
-\dontrun{cuttxt = scan.textout(junkrun$textout[1])} # post-process the text
-\dontrun{read.analysis.output(txt=cuttxt)} # read output into a data.frame
+data(parrot)
+junkrun=run.asis(parrot)
+cuttxt = scan.textout(junkrun$textout[1]) # post-process the text
+read.analysis.output(txt=cuttxt) # read output into a data.frame
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

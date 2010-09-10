@@ -43,8 +43,8 @@ J. Conrad Stack
 }
 \examples{
 data(parrot)
-\dontrun{junkrun=run.asis(parrot)}
-\dontrun{cuttxt = scan.textout(junkrun$textout[1])} # post-process the text
+junkrun=run.asis(parrot)
+cuttxt = scan.textout(junkrun$textout[1]) # post-process the text
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

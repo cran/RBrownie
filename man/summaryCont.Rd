@@ -45,12 +45,12 @@ J. Conrad Stack
 }
 \examples{
 data(parrot)
-\dontrun{junkrun=runNonCensored(parrot,
+junkrun=runNonCensored(parrot,
 	brfile="cont_junk.txt",
 	models=brownie.models.continuous()[1:2],
 	treeloop=TRUE,
-	charloop=TRUE)}
-\dontrun{summaryCont(junkrun)}
+	charloop=TRUE)
+summaryCont(junkrun)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

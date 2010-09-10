@@ -52,8 +52,8 @@ J.Conrad Stack
 \examples{
 # run Censored ratetest
 data(parrot)
-\dontrun{brownierun = runCensored(parrot,taxset="intrajoint",reps=1000,charloop=TRUE)}
-\dontrun{summaryRatetest(brownierun)}
+brownierun = runCensored(parrot,taxset="intrajoint",reps=1000,charloop=TRUE)
+summaryRatetest(brownierun)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

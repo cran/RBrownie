@@ -38,14 +38,10 @@ Options to be passed to phyextPlot
 }
 }
 \details{
-This function is a specialization of phyextPlot.  The
+This function is a specialization of phyextPlot.  This function shows the potentially deleted edges on the tree given a specific taxa set.
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -64,7 +60,7 @@ J. Conrad Stack
 }
 \examples{
 data(parrot)
-\dontrun{plot.censored(parrot[[1]], 2, taxlwd=2, rmlty=2)}
+plot.censored(parrot[[1]], 2, taxlwd=2, rmlty=2)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

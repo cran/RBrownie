@@ -42,8 +42,8 @@ J. Conrad Stack
 }
 \examples{
 data(parrot)
-\dontrun{which.mono(parrot,2)} # returns empty vector
-\dontrun{which.mono(parrot,1)} # all trees contain this monophyly
+which.mono(parrot,2) # returns empty vector
+which.mono(parrot,1) # all trees contain this monophyly
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

@@ -45,9 +45,9 @@ J. Conrad Stack
 }
 \examples{
 data(parrot)
-\dontrun{numbcontaining = checkPara(parrot,2,percent=FALSE)}
-\dontrun{numb = length(parrot)}
-\dontrun{numbcontaining / numb}
+numbcontaining = checkPara(parrot,2,percent=FALSE)  # check is the 2nd taxaset forms a paraphyly
+numb = length(parrot)
+numbcontaining / numb
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

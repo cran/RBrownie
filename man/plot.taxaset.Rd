@@ -64,7 +64,7 @@ J. Conrad Stack
 }
 \examples{
 data(parrot)
-\dontrun{plot.taxaset(parrot[[1]], 2)}
+plot.taxaset(parrot[[1]], 2)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

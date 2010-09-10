@@ -45,8 +45,8 @@ J. Conrad Stack
 }
 \examples{
 data(parrot)
-\dontrun{junkrun = runCensored(parrot,taxset="intrajoint",reps=1000,charloop=TRUE)}
-\dontrun{summaryRatetest(junkrun)}
+junkrun = runCensored(parrot,taxset="intrajoint",reps=1000,charloop=TRUE)
+summaryRatetest(junkrun)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

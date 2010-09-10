@@ -1,30 +1,28 @@
-\name{is_valid_datatype}
-\alias{is_valid_datatype}
+\name{read.simmap.new}
+\alias{read.simmap.new}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Check for valid datatype
+Read simmap-formatted newick strings (version 1.5)
 }
 \description{
-For future use
+This function takes in a text string which contains a simmap-formatted newick string.  '[' and ']' are used in these strings to indicate subnodes and character states.
 }
 \usage{
-is_valid_datatype(object)
+read.simmap.new(file = "", text = NULL)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
-  \item{object}{
-%%     ~~Describe \code{object} here~~
+  \item{file}{
+A file containing a newick string with SIMMAP 1.5 style comments
+}
+  \item{text}{
+The simmap newick string
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+This is still a work in progress.  
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -42,8 +40,9 @@ is_valid_datatype(object)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ methods }
+

@@ -1,19 +1,22 @@
-\name{is_valid_datatype_prob}
-\alias{is_valid_datatype_prob}
+\name{match.order}
+\alias{match.order}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Check for valid datatype probability
+Matching orders
 }
 \description{
-For future use
+Internal function for \code{read.simmap.new}: Match the order of one list ot the order of another
 }
 \usage{
-is_valid_datatype_prob(object)
+match.order(basevec, cmpvec)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{object}{
-%%     ~~Describe \code{object} here~~
+  \item{basevec}{
+The vector whose order that is to be matched to
+}
+  \item{cmpvec}{
+The vector whose order needs to be changed
 }
 }
 \details{
@@ -42,9 +45,7 @@ is_valid_datatype_prob(object)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+
+\keyword{ methods }
+

@@ -8,7 +8,7 @@ List frequencies
 List valid frequencies used in different brownie analyses
 }
 \usage{
-brownie.freqs(with.desc = F)
+brownie.freqs(with.desc = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -46,5 +46,5 @@ J. Conrad Stack
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ methods }
-
+\keyword{ ~kwd1 }
+\keyword{ methods }% __ONLY ONE__ keyword per line

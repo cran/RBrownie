@@ -1,23 +1,29 @@
-\name{is_valid_datatype_prob}
-\alias{is_valid_datatype_prob}
+\name{strip}
+\alias{strip}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Check for valid datatype probability
+Strip whitespace 
 }
 \description{
-For future use
+Internal function:  strip whitespace from the ends of a string
 }
 \usage{
-is_valid_datatype_prob(object)
+strip(str, left = TRUE, right = TRUE)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
-  \item{object}{
-%%     ~~Describe \code{object} here~~
+  \item{str}{
+A string
+}
+  \item{left}{
+Strip white space from left end of string
+}
+  \item{right}{
+Strip white space from right end of string
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+
 }
 \value{
 %%  ~Describe the value returned
@@ -42,9 +48,8 @@ is_valid_datatype_prob(object)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-
+strip("\tthisis the function\n\n")
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+
+\keyword{ methods }
+

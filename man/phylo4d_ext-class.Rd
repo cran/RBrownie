@@ -86,9 +86,9 @@ Class \code{"\linkS4class{phylo4}"}, by class "phylo4d", distance 2.
     \item{weight<-}{\code{signature(x = "phylo4d_ext")}: Replaces the weight vector. }
 	 }
 }
-
+\references{ ~put references to the literature/web site here ~ }
 \author{ J. Conrad Stack }
-
+\note{ }
 
 \seealso{
 	\code{\linkS4class{phylo4d}}

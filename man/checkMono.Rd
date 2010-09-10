@@ -23,10 +23,10 @@ Should the results be returned as the number of trees in the set which contain t
 }
 }
 \details{
-This function exists so that a set of trees can be checked to see if how many of the trees within contain the monophyly specified by taxaset.  To see a list of the taxasets available to test call taxasets().
+This function exists so that a set of trees can be checked to see if how many of the trees within contain the monophyly specified by taxaset.  To see a list of the taxasets available to test call \code{taxasets()}.
 }
 \value{
-The number of trees (as percent or number) which contain the monophyly
+The number of trees (as percent or number) which contain the monophyly.
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -47,9 +47,9 @@ J. Conrad Stack
 }
 \examples{
 data(parrot)
-\dontrun{numbcontaining = checkMono(parrot,1,percent=FALSE)}
-\dontrun{numb = length(parrot)}
-\dontrun{numbcontaining / numb}
+numbcontaining = checkMono(parrot,1,percent=FALSE)
+numb = length(parrot)
+numbcontaining / numb
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

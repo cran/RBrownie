@@ -3265,6 +3265,17 @@ _ACEOF
 fi
 
 
+if test "$ac_cv_lib_gsl_gsl_blas_dgemm" == no
+then
+	as_fn_error "Could not find required version of GSL (>1.14)" "$LINENO" 5
+	exit 1
+fi
+
+if test "$ac_cv_lib_gslcblas_cblas_dgemm" == no
+then
+	as_fn_error "Could not find required version of GSL -> cblas" "$LINENO" 5
+	exit 1
+fi
 
 
 

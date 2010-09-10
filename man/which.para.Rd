@@ -42,8 +42,8 @@ J. Conrad Stack
 }
 \examples{
 data(parrot)
-\dontrun{which.para(parrot,2)} # returns empty vector
-\dontrun{which.para(parrot,1)} # all trees contain this paraphyly
+which.para(parrot,2) # returns empty vector
+which.para(parrot,1) # all trees contain this paraphyly
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
